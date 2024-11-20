@@ -1,0 +1,26 @@
+name: Deploy Streamlit App
+
+on:
+  push:
+    branches:
+      - main  # 監控 main 分支的變更，視情況修改為你的默認分支
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3  # 拉取最新的代碼
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'  # 確保使用適合 Streamlit 的 Python 版本
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt  # 安裝依賴
+
+    - name: Deploy to Streamlit
+      run: streamlit run app.py --server.headless true
