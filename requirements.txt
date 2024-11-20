@@ -1,3 +1,5 @@
 streamlit
-yfinance
+flask
 pandas
+yfinance
+python-binance
